@@ -30,6 +30,16 @@ public class CommonUtil {
         return outStream.toByteArray();
     }
 
+//    public static byte[] inputStreamToByte(InputStream in) throws Exception {
+//        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+//        byte[] data = new byte[4096];
+//        int count;
+//        while ((count = in.read(data, 0, 4096)) != -1) {
+//            outStream.write(data, 0, count);
+//        }
+//        return outStream.toByteArray();
+//    }
+
     public static boolean ignore(String line) {
         return (line.trim().length() == 0) || (line.trim().startsWith("#"));
     }

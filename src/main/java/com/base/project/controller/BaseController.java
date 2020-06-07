@@ -167,7 +167,7 @@ public class BaseController {
         }
         response.setContentType(contentType);
         response.setHeader("Content-disposition", "attachment; filename=\"" + filename + "\"");
-        response.setHeader("Content-Length", "" + bytes.length);
+        response.setHeader("Content-Length", bytes.length + "");
         if (acao) {
             response.setHeader("Access-Control-Allow-Origin", "*");
         }
@@ -184,6 +184,45 @@ public class BaseController {
                 }
         }
     }
+
+    // 非反编译代码
+//    protected final void download(byte[] bytes, String filename, String contentType, boolean acao) throws IOException {
+//        HttpServletResponse response = getResponse();
+//        HttpServletRequest request = getRequest();
+//        String userAgent = request.getHeader("User-Agent");
+//        if (userAgent != null && (userAgent.toLowerCase().indexOf("msie") > 0
+//                || userAgent.toLowerCase().indexOf("rv:11.0") > 0 || userAgent.toLowerCase().indexOf("edge") > 0)) {// IE
+//            filename = URLEncoder.encode(filename, "UTF-8");
+//            filename = filename.replaceAll("\\+", "%20");// 处理空格变+问题
+//            // if ("https".equals(request.getScheme())) {// https
+//            // response.setHeader("Content-Transfer-Encoding", "binary");
+//            // response.setHeader("Cache-Control",
+//            // "must-revalidate, post-check=0, pre-check=0");
+//            // response.setHeader("Pragma", "public");
+//            // }
+//        } else {
+//            filename = new String(filename.getBytes("UTF-8"), "ISO_8859_1");
+//        }
+//        response.setContentType(contentType);
+//        response.setHeader("Content-disposition", "attachment; filename=\"" + filename + "\"");
+//        response.setHeader("Content-Length", bytes.length + "");
+//        if (acao) {
+//            response.setHeader("Access-Control-Allow-Origin", "*");
+//        }
+//
+//        BufferedOutputStream bos = null;
+//        try {
+//            bos = new BufferedOutputStream(response.getOutputStream());
+//            bos.write(bytes);
+//        } finally {
+//            if (bos != null) {
+//                try {
+//                    bos.close();
+//                } catch (IOException e) {
+//                }
+//            }
+//        }
+//    }
 
     protected final void download(InputStream is, String filename, String contentType) throws IOException {
         HttpServletResponse response = getResponse();
